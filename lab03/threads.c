@@ -17,7 +17,6 @@ int main(void) {
   printf("PROCESSO PAI (ANTES DO THREAD) --> Valor: %d\n", count);
 
   pthread_t thread1;
-
   pthread_create(&thread1, NULL, thread, NULL);
   pthread_join(thread1, NULL);
 
