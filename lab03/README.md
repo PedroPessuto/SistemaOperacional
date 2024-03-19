@@ -1,1 +1,1 @@
-<img width="1511" alt="Lab03" src="https://github.com/PedroPessuto/SistemaOperacional/assets/116746646/4c1d2439-2661-4146-8bab-f2e1a19c2012">
+<img width="1511" alt="lab03" src="https://github.com/PedroPessuto/SistemaOperacional/assets/116746646/f55c14fb-bb88-4f34-9d56-6abf43f16fa9">
