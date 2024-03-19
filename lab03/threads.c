@@ -4,25 +4,25 @@
 #include <string.h>
 #include <unistd.h>
 
-int count = 0;
+char var = 'A';
 
 // ==== FUNCTION ON THREAD ====
 static void *func() {
-  count = count + 5;
-  printf("THREAD --> Valor: %d\n", count);
+  var = 'C';
+  printf("THREAD --> Valor: %c\n", var);
   return NULL;
 }
 
 int main(void) {
-  count = 10;
-  printf("PROCESSO PAI (ANTES DO THREAD) --> Valor: %d\n", count);
+   var = 'B';
+  printf("PROCESSO PAI (ANTES DO THREAD) --> Valor: %c\n", var);
 
   // ==== THREAD ====
   pthread_t t;
   pthread_create(&t, NULL, func, NULL); // Cria a thread
   pthread_join(t, NULL); // Espera a thread terminar
 
-  printf("PROCESSO PAI (DEPOIS DO THREAD) --> Valor: %d\n", count);
+  printf("PROCESSO PAI (DEPOIS DO THREAD) --> Valor: %c\n", var);
 
   exit(0);
 }
