@@ -6,7 +6,8 @@
 
 int count = 0;
 
-static void *thread() {
+// ==== FUNCTION ON THREAD ====
+static void *func() {
   count = count + 5;
   printf("THREAD --> Valor: %d\n", count);
   return NULL;
@@ -16,9 +17,10 @@ int main(void) {
   count = 10;
   printf("PROCESSO PAI (ANTES DO THREAD) --> Valor: %d\n", count);
 
-  pthread_t thread1;
-  pthread_create(&thread1, NULL, thread, NULL);
-  pthread_join(thread1, NULL);
+  // ==== THREAD ====
+  pthread_t t;
+  pthread_create(&t, NULL, func, NULL); // Cria a thread
+  pthread_join(t, NULL); // Espera a thread terminar
 
   printf("PROCESSO PAI (DEPOIS DO THREAD) --> Valor: %d\n", count);
 
