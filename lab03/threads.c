@@ -1,66 +1,27 @@
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <malloc.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <sched.h>
+#include <string.h>
+#include <unistd.h>
 
-#define _GNU_SOURCE
+int count = 0;
 
-// 64kB stack
-#define FIBER_STACK 1024 * 64
-
-int shared_data = 0;
-
-// The child thread will execute this function
-int threadFunction(void *argument)
-{
-
-    shared_data++;
-    printf("Valor da variável compartilhada no processo filho: %d\n", shared_data);
-
-    printf("child thread exiting\n");
-    return 0;
+static void *thread() {
+  count = count + 5;
+  printf("THREAD --> Valor: %d\n", count);
+  return NULL;
 }
 
-int main()
-{
-    void *stack;
-    pid_t pid;
+int main(void) {
+  count = 10;
+  printf("PROCESSO PAI (ANTES DO THREAD) --> Valor: %d\n", count);
 
-    // Allocate the stack
-    stack = malloc(FIBER_STACK);
-    if (stack == 0)
-    {
-        perror("malloc: could not allocate stack");
-        exit(1);
-    }
+  pthread_t thread1;
 
-    printf("Creating child thread\n");
-    // Call the clone system call to create the child thread
-    pid = clone(&threadFunction, (char *)stack + FIBER_STACK,
-                SIGCHLD | CLONE_FS | CLONE_FILES | CLONE_SIGHAND | CLONE_VM, 0);
-    if (pid == -1)
-    {
-        perror("clone");
-        exit(2);
-    }
+  pthread_create(&thread1, NULL, thread, NULL);
+  pthread_join(thread1, NULL);
 
-    // Wait for the child thread to exit
-    pid = waitpid(pid, 0, 0);
-    if (pid == -1)
-    {
-        perror("waitpid");
-        exit(3);
-    }
+  printf("PROCESSO PAI (DEPOIS DO THREAD) --> Valor: %d\n", count);
 
-    // Free the stack
-    free(stack);
-    printf("Child thread returned and stack freed.\n");
-
-    // Mostra o valor atualizado da variável compartilhada
-    printf("Valor da variável compartilhada no processo pai após o término do processo filho: %d\n", shared_data);
-
-    return 0;
+  exit(0);
 }
