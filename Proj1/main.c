@@ -18,46 +18,35 @@ int simularEscadaRolante(Pessoa pessoas[], int numPessoas) {
   int direcao = pessoas[0].direcao;
   int ultimoDaSeq = pessoas[0].tempoChegada;
   int tempoDeTermino = pessoas[0].tempoChegada + 10;
-  int count = 0; // Quantidade de pessoas que já concluiram a viagem
+  int count = 0;
   int aux = 0;
 
   while (count < numPessoas) {
 
-    
     for (int i = 0; i < numPessoas; i++) {
       if (pessoas[i].direcao == direcao) {
         if (pessoas[i].tempoChegada < tempoDeTermino) {
           ultimoDaSeq = pessoas[i].tempoChegada;
           count++;
         }
-        if (i + 1 == numPessoas) {
-          if (aux != 1) {
-            tempoDeTermino = ultimoDaSeq + 10;
-            aux = 1;
-          } else {
-            tempoDeTermino = tempoDeTermino + 10;
-          }
-          break;
+      }
+
+      if (i + 1 == numPessoas) {
+        if (aux != 1) {
+          tempoDeTermino = ultimoDaSeq + 10;
+          aux = 1;
+        } else {
+          tempoDeTermino = tempoDeTermino + 10;
         }
+        break;
       }
     }
 
-    for (int i = 0; i < numPessoas; i++) {
-      if (pessoas[i].direcao != direcao) {
-        if (pessoas[i].tempoChegada < tempoDeTermino) {
-          ultimoDaSeq = pessoas[i].tempoChegada;
-          count++;
-        }
-        if (i + 1 == numPessoas) {
-          if (aux != 1) {
-            tempoDeTermino = ultimoDaSeq + 10;
-            aux = 1;
-          } else {
-            tempoDeTermino = tempoDeTermino + 10;
-          }
-          break;
-        }
-      }
+    if (direcao == 0) {
+      direcao = 1;
+    }
+    else {
+      direcao = 0;
     }
   }
 
