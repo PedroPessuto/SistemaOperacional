@@ -114,3 +114,42 @@ Enquanto na de processos, foi criado um fork que se é é filho ele executa a fu
     fclose(arquivo_saida);
   }
 ```
+
+
+# Execução do código
+
+1. Deve-se utilizar uma máquina Linux
+2. É preciso ter um arquivo (.txt) com nome (input.txt) com as entradas das pessoas com tempo e direção no mesmo diretório
+
+```
+  5
+  5 0
+  7 1
+  10 0
+  13 1
+  25 1
+```
+
+3. Utilize o comando com o nome do arquivo utilizado (processo.c ou thread.c)
+
+ ```
+   gcc arquivo.c -o nome
+```
+
+4. Depois use o comando para executar o arquivo compilado
+   
+```
+   ./nome
+```
+
+5. O progrma terá criado um arquivo (output.txt). Para ver o conteúdo do arquivo
+   
+```
+  cat output.txt
+```
+
+# Observações
+
+1. As matrizes foram utilizadas para não ter a necessidade de manipular todo o código a cada iteração na troca de direção
+2. Foi optado por utilizar variáveis globais para aumentar o desempenho e facilitar o estado de compartilhamento
+3. Tem um limite máximo de 10 mil entradas, pois era o valor máximo dos exemplos disponibilizados 
