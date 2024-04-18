@@ -1,9 +1,9 @@
 # Projeto Escada Rolante Dupla
 
 
-# 1. Estratégia para evitar que duas pessoas acessem a escada rolante ao mesmo tempo em cada abordagem
+# 1.  Qual a estratégia que você utilizou para evitar que duas pessoas acessem a escada rolante ao mesmo tempo em cada abordagem?
 
-Em amabas abordagens a função escada_rolante() controla o acesso à escada por pessoas de duas direções alternadas. A última partida é sempre incrementada em 10 unidades para evitar acessos simultâneos.
+A estratégia utilizada em amabas das abordagens para evitar acessos simultâneos à escada rolante envolve alternar as direções de acesso a cada iteração e checar se é seguro avançar com base no tempo da última pessoa que utilizou a escada. Caso não seja possível avançar, o controle passa para a direção oposta, ajustando os tempos de partida conforme o necessário.
 
 ```
   while (indices[0] < tamanhos[0] || indices[1] < tamanhos[1]) {
