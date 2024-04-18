@@ -9,7 +9,9 @@ A estratégia utilizada em amabas das abordagens para evitar acessos simultâneo
   while (indices[0] < tamanhos[0] || indices[1] < tamanhos[1]) {
     direcao_oposta = 1 - direcao;
 
-    if (pessoas_globais[direcao][indices[direcao]] <= ultima_partida) {
+    int partida_valida = pessoas_globais[direcao][indices[direcao]] <= ultima_partida;
+
+    if (partida_valida) {
       // Atualiza o tempo atual para o tempo de partida da pessoa na posição atual
       tempo_atual = pessoas_globais[direcao][indices[direcao]];
 
