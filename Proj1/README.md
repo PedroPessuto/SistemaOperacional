@@ -153,3 +153,4 @@ Enquanto na de processos, foi criado um fork que se é é filho ele executa a fu
 1. As matrizes foram utilizadas para não ter a necessidade de manipular todo o código a cada iteração na troca de direção
 2. Foi optado por utilizar variáveis globais para aumentar o desempenho e facilitar o estado de compartilhamento
 3. Tem um limite máximo de 10 mil entradas, pois era o valor máximo dos exemplos disponibilizados 
+4. Funciona para todos os casos (que testei) (inclui o último)
