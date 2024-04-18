@@ -3,11 +3,78 @@
 
 # 1. Estratégia para evitar que duas pessoas acessem a escada rolante ao mesmo tempo em cada abordagem
 
-Em amabas abordagens a função escada_rolante() controla o acesso à escada por pessoas de duas direções alternadas. Ela verifica se o próximo na fila pode avançar, baseado no tempo de partida e na presença ou ausência de pessoas na direção oposta. Se possível, o índice da direção atual é incrementado; se não, a função ajusta o tempo e avança na direção oposta. A última partida é sempre incrementada em 10 unidades para evitar acessos simultâneos.
+Em amabas abordagens a função escada_rolante() controla o acesso à escada por pessoas de duas direções alternadas. A última partida é sempre incrementada em 10 unidades para evitar acessos simultâneos.
+
+```
+  while (indices[0] < tamanhos[0] || indices[1] < tamanhos[1]) {
+    direcao_oposta = 1 - direcao;
+
+    int pode_avancar = indices[direcao] < tamanhos[direcao];
+    int partida_valida = pessoas_globais[direcao][indices[direcao]] <= ultima_partida;
+
+    if (pode_avancar && partida_valida) {
+      // Atualiza o tempo atual para o tempo de partida da pessoa na posição atual
+      tempo_atual = pessoas_globais[direcao][indices[direcao]];
+
+      // Avança o indice
+      indices[direcao]++;
+    } 
+    else {
+      // Determina o novo tempo atual baseado na comparação entre a última partida e a próxima pessoa na direção oposta
+      int proxima_partida_oposta = pessoas_globais[direcao_oposta][indices[direcao_oposta]];
+
+      tempo_atual = (ultima_partida > proxima_partida_oposta) ? ultima_partida : proxima_partida_oposta;
+
+      // Avança o índice na direção oposta
+      indices[direcao_oposta]++;
+
+      // Atualiza o tempo de todas as pessoas na direção oposta que têm tempo menor que a última partida
+      for (int i = indices[direcao_oposta]; i < tamanhos[direcao_oposta] && ultima_partida > pessoas_globais[direcao_oposta][i]; ++i) {
+        pessoas_globais[direcao_oposta][i] = ultima_partida;
+      }
+    }
+
+    ultima_partida = tempo_atual + 10;
+    direcao = 1 - direcao;
+  }
+```
 
 # 2. Como garantir que somente uma das direções está ativa de cada vez em cada uma das abordagens?
 
 Foi feita uma variável de direção ativa, que é alternada a cada iteração do loop. A validação do tempo de partida e a verificação de pessoas na direção oposta, são usadas para controlar o acesso. A função também ajusta os tempos e incrementa os índices de maneira a prevenir acessos simultâneos de direções opostas.
+
+```
+// ========== VARIÁVEIS GLOBAIS ==========
+int pessoas_globais[2][10000];
+int tamanhos[2] = {0, 0};
+int direcao;
+int tempo_atual;
+
+// ========== FUNÇÃO ==========
+int escada_rolante() {
+
+  // ========== VARIÁVEIS AUXILIARES ==========
+  int direcao_oposta;
+  int indices[2] = {0, 0};
+  int ultima_partida = 0;
+
+  tempo_atual = pessoas_globais[direcao][0];
+
+ // ========== LOOP POR TODOS OS ELEMENTOS ==========
+  while (indices[0] < tamanhos[0] || indices[1] < tamanhos[1]) {
+
+    direcao_oposta = 1 - direcao; // Verifica qual é a direção oposta
+   
+    ... Código (Válidações e comparações) ...
+
+    ultima_partida = tempo_atual + 10;
+    direcao = 1 - direcao; // Altera a direção
+  }
+
+  return ultima_partida + 10;
+}
+
+```
 
 # 3. Discorra sobre as diferenças entre as implementações utilizando threads e processos e diga qual foi mais eficiente na solução do problema, justificando sua resposta.
 
