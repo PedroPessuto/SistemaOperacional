@@ -27,10 +27,6 @@ A estratégia utilizada em amabas das abordagens para evitar acessos simultâneo
       // Avança o índice na direção oposta
       indices[direcao_oposta]++;
 
-      // Atualiza o tempo de todas as pessoas na direção oposta que têm tempo menor que a última partida
-      for (int i = indices[direcao_oposta]; i < tamanhos[direcao_oposta] && ultima_partida > pessoas_globais[direcao_oposta][i]; ++i) {
-        pessoas_globais[direcao_oposta][i] = ultima_partida;
-      }
     }
 
     ultima_partida = tempo_atual + 10;
