@@ -22,29 +22,24 @@ int escada_rolante() {
     int pode_avancar = indices[direcao] < tamanhos[direcao];
     int partida_valida = pessoas_globais[direcao][indices[direcao]] <= ultima_partida;
 
-    if (pode_avancar && partida_valida) { {
+    if (pode_avancar && partida_valida) {
       // Atualiza o tempo atual para o tempo de partida da pessoa na posição atual
       tempo_atual = pessoas_globais[direcao][indices[direcao]];
 
       // Avança o indice
       indices[direcao]++;
-    } else {
+    } 
+    else {
       // Determina o novo tempo atual baseado na comparação entre a última partida e a próxima pessoa na direção oposta
-      int proxima_partida_oposta =
-          pessoas_globais[direcao_oposta][indices[direcao_oposta]];
+      int proxima_partida_oposta = pessoas_globais[direcao_oposta][indices[direcao_oposta]];
 
-      tempo_atual = (ultima_partida > proxima_partida_oposta)
-                        ? ultima_partida
-                        : proxima_partida_oposta;
+      tempo_atual = (ultima_partida > proxima_partida_oposta) ? ultima_partida : proxima_partida_oposta;
 
       // Avança o índice na direção oposta
       indices[direcao_oposta]++;
 
       // Atualiza o tempo de todas as pessoas na direção oposta que têm tempo menor que a última partida
-      for (int i = indices[direcao_oposta];
-           i < tamanhos[direcao_oposta] &&
-           ultima_partida > pessoas_globais[direcao_oposta][i];
-           ++i) {
+      for (int i = indices[direcao_oposta]; i < tamanhos[direcao_oposta] && ultima_partida > pessoas_globais[direcao_oposta][i]; ++i) {
         pessoas_globais[direcao_oposta][i] = ultima_partida;
       }
     }
