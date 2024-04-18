@@ -3,7 +3,7 @@
 
 # 1. Estratégia para evitar que duas pessoas acessem a escada rolante ao mesmo tempo em cada abordagem
 
-Em amabas abordagens a função escada_rolante() controla o acesso à escada por pessoas de duas direções alternadas. Ela verifica se o próximo na fila pode avançar, baseado no tempo de partida e na presença ou ausência de pessoas na direção oposta. Se possível, o índice da direção atual é incrementado; se não, a função ajusta o tempo e avança na direção oposta. A última partida é sempre incrementada em 10 unidades para evitar acessos simultâneos. Essa alternância e ajuste de tempos garantem um fluxo seguro e ordenado na escada rolante.
+Em amabas abordagens a função escada_rolante() controla o acesso à escada por pessoas de duas direções alternadas. Ela verifica se o próximo na fila pode avançar, baseado no tempo de partida e na presença ou ausência de pessoas na direção oposta. Se possível, o índice da direção atual é incrementado; se não, a função ajusta o tempo e avança na direção oposta. A última partida é sempre incrementada em 10 unidades para evitar acessos simultâneos.
 
 # 2. Como garantir que somente uma das direções está ativa de cada vez em cada uma das abordagens?
 
