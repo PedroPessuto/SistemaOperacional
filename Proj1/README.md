@@ -26,7 +26,6 @@ A estratégia utilizada em amabas das abordagens para evitar acessos simultâneo
 
       // Avança o índice na direção oposta
       indices[direcao_oposta]++;
-
     }
 
     ultima_partida = tempo_atual + 10;
