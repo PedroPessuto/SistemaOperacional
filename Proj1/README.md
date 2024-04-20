@@ -154,3 +154,13 @@ Enquanto na de processos, foi criado um fork que se é é filho ele executa a fu
 2. Foi optado por utilizar variáveis globais para aumentar o desempenho e facilitar o estado de compartilhamento
 3. Tem um limite máximo de 10 mil entradas, pois era o valor máximo dos exemplos disponibilizados 
 4. Funciona para todos os casos (que testei) (inclui o último)
+
+
+# Comprovação de Execução na AWS
+Threads
+<img width="1483" alt="Screenshot 2024-04-19 at 22 00 31" src="https://github.com/PedroPessuto/SistemaOperacional/assets/116746646/f0d2021d-e660-4c78-ab1d-11a4d979477f">
+
+Processos
+<img width="1483" alt="Screenshot 2024-04-19 at 22 03 41" src="https://github.com/PedroPessuto/SistemaOperacional/assets/116746646/4cc86e76-9f7a-4c44-b268-2e4ce5f6d33d">
+
+
