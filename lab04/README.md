@@ -23,3 +23,5 @@ O código cria três threads para calcular o produto de uma matriz 3x3 por um ve
 ```
    ./nome
 ```
+
+<img width="1483" alt="Screenshot 2024-04-29 at 23 05 40" src="https://github.com/PedroPessuto/SistemaOperacional/assets/116746646/83aea62a-0743-4654-88a7-48c5dd029ba2">
