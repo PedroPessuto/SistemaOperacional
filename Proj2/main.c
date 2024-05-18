@@ -29,21 +29,23 @@ void *transferir(void *args) {
   if (t->envia->saldo - t->valor >= 0) {
     printf("Transação de %s para %s\n", t->envia->nome, t->recebe->nome);
     printf("Valor da transação: R$ %d,00\n", t->valor);
-    
+
     printf("%s - Saldo Anterior: R$ %d,00\n", t->envia->nome, t->envia->saldo);
     t->envia->saldo = t->envia->saldo - t->valor;
     printf("%s - Saldo Posterior: R$ %d,00\n", t->envia->nome, t->envia->saldo);
 
-    printf("%s - Saldo Anterior: R$ %d,00\n", t->recebe->nome, t->recebe->saldo);
+    printf("%s - Saldo Anterior: R$ %d,00\n", t->recebe->nome,
+           t->recebe->saldo);
     t->recebe->saldo = t->recebe->saldo + t->valor;
-    printf("%s - Saldo Posterior: R$ %d,00\n", t->recebe->nome, t->recebe->saldo);
+    printf("%s - Saldo Posterior: R$ %d,00\n", t->recebe->nome,
+           t->recebe->saldo);
 
   } else {
     printf("Saldo Insuficiente\n");
   }
 
   pthread_mutex_unlock(&semaforo);
-  free(t); 
+  free(t);
   return NULL;
 }
 
@@ -56,19 +58,22 @@ int main(void) {
 
   pthread_mutex_init(&semaforo, NULL);
 
-  int totalDeTransacoes = rand() % 50 + 1; 
-  int totalDeLoops = totalDeTransacoes / 100 + (totalDeTransacoes % 100 != 0); 
+  int totalDeTransacoes = rand() % 1000 + 1;
+  int totalDeLoops = totalDeTransacoes / 100 + (totalDeTransacoes % 100 != 0);
   int count = 0;
 
   for (int i = 0; i < totalDeLoops; i++) {
     pthread_t thread_id[100];
 
+    printf("==================================================\n");
+    printf("Processando até 100 transações simultâneas");
+    printf("==================================================\n");
     for (int j = 0; j < 100; j++) {
       if (count >= totalDeTransacoes) {
         break;
       }
 
-      transacao *t = (transacao *)malloc(sizeof(transacao)); 
+      transacao *t = (transacao *)malloc(sizeof(transacao));
       int n = rand() % 2;
       if (n == 0) {
         t->envia = &conta1;
