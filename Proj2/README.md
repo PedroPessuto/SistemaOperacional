@@ -1,4 +1,4 @@
-# Projeto Escada Rolante Dupla
+# Projeto 2: Transferências de Contas
 
 # Como compilar e executar
 
