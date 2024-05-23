@@ -22,3 +22,5 @@
 
 
 # Comprovação de Execução na AWS
+
+![Captura de tela 2024-05-23 204652](https://github.com/PedroPessuto/SistemaOperacional/assets/116746646/a7c8694f-5b7e-453f-88a6-00337c7a2ef9)
