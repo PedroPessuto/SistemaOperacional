@@ -5,7 +5,7 @@
 #include <time.h>
 
 struct conta {
-  char nome[10];
+  char nome[100];
   int saldo;
 };
 typedef struct conta conta;
@@ -58,7 +58,7 @@ int main(void) {
 
   pthread_mutex_init(&semaforo, NULL);
 
-  int totalDeTransacoes = rand() % 1000 + 1;
+  int totalDeTransacoes = 1000;
   int totalDeLoops = totalDeTransacoes / 100 + (totalDeTransacoes % 100 != 0);
   int count = 0;
 
